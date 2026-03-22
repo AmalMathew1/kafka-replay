@@ -34,9 +34,28 @@ func DetectParser(filePath string) (EventParser, error) {
 		return JSONLinesParser{}, nil
 	case ".json":
 		return detectJSONFormat(filePath)
+	case ".avro":
+		return AvroParser{}, nil
 	default:
-		return detectJSONFormat(filePath)
+		return detectByContent(filePath)
 	}
+}
+
+func detectByContent(filePath string) (EventParser, error) {
+	f, err := os.Open(filePath)
+	if err != nil {
+		return nil, fmt.Errorf("opening file for detection %s: %w", filePath, err)
+	}
+	defer f.Close()
+
+	// Check Avro magic bytes: "Obj\x01"
+	magic := make([]byte, 4)
+	n, _ := f.Read(magic)
+	if n == 4 && magic[0] == 'O' && magic[1] == 'b' && magic[2] == 'j' && magic[3] == 1 {
+		return AvroParser{}, nil
+	}
+
+	return detectJSONFormat(filePath)
 }
 
 func detectJSONFormat(filePath string) (EventParser, error) {

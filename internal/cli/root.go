@@ -20,6 +20,7 @@ No live Kafka connection required — works entirely with exported event files.`
 	cmd.AddCommand(newStatsCmd())
 	cmd.AddCommand(newDiffCmd())
 	cmd.AddCommand(newValidateCmd())
+	cmd.AddCommand(newDLQInspectCmd())
 
 	return cmd
 }

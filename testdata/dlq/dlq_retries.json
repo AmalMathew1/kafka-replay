@@ -1,0 +1,38 @@
+[
+  {
+    "event": {
+      "topic": "orders.dlq", "partition": 0, "offset": 1, "key": "order-501",
+      "value": {"order_id": "501"},
+      "timestamp": "2024-06-15T10:00:00Z", "event_type": "OrderCreated"
+    },
+    "failure_reason": "downstream_timeout",
+    "original_topic": "orders",
+    "retry_count": 15,
+    "first_failed_at": "2024-06-15T09:00:00Z",
+    "last_failed_at": "2024-06-15T10:00:00Z"
+  },
+  {
+    "event": {
+      "topic": "orders.dlq", "partition": 0, "offset": 2, "key": "order-502",
+      "value": {"order_id": "502"},
+      "timestamp": "2024-06-15T10:01:00Z", "event_type": "OrderCreated"
+    },
+    "failure_reason": "downstream_timeout",
+    "original_topic": "orders",
+    "retry_count": 12,
+    "first_failed_at": "2024-06-15T09:10:00Z",
+    "last_failed_at": "2024-06-15T10:01:00Z"
+  },
+  {
+    "event": {
+      "topic": "payments.dlq", "partition": 0, "offset": 3, "key": "pay-601",
+      "value": {"payment_id": "601"},
+      "timestamp": "2024-06-15T10:02:00Z", "event_type": "PaymentProcessed"
+    },
+    "failure_reason": "insufficient_funds",
+    "original_topic": "payments",
+    "retry_count": 1,
+    "first_failed_at": "2024-06-15T10:01:50Z",
+    "last_failed_at": "2024-06-15T10:02:00Z"
+  }
+]

@@ -1,0 +1,99 @@
+[
+  {
+    "event": {
+      "topic": "orders.dlq", "partition": 0, "offset": 1, "key": "order-101",
+      "value": {"order_id": "101", "amount": 59.99},
+      "timestamp": "2024-06-15T10:00:00Z", "event_type": "OrderCreated"
+    },
+    "failure_reason": "schema_validation_failed",
+    "original_topic": "orders",
+    "retry_count": 3,
+    "first_failed_at": "2024-06-15T09:58:00Z",
+    "last_failed_at": "2024-06-15T10:00:00Z",
+    "error_details": {"field": "amount", "message": "negative value not allowed"}
+  },
+  {
+    "event": {
+      "topic": "orders.dlq", "partition": 0, "offset": 2, "key": "order-102",
+      "value": {"order_id": "102", "amount": 0},
+      "timestamp": "2024-06-15T10:00:05Z", "event_type": "OrderCreated"
+    },
+    "failure_reason": "schema_validation_failed",
+    "original_topic": "orders",
+    "retry_count": 3,
+    "first_failed_at": "2024-06-15T09:58:05Z",
+    "last_failed_at": "2024-06-15T10:00:05Z"
+  },
+  {
+    "event": {
+      "topic": "payments.dlq", "partition": 0, "offset": 3, "key": "pay-201",
+      "value": {"payment_id": "201", "order_id": "101"},
+      "timestamp": "2024-06-15T10:01:00Z", "event_type": "PaymentProcessed"
+    },
+    "failure_reason": "downstream_timeout",
+    "original_topic": "payments",
+    "retry_count": 5,
+    "first_failed_at": "2024-06-15T09:55:00Z",
+    "last_failed_at": "2024-06-15T10:01:00Z"
+  },
+  {
+    "event": {
+      "topic": "orders.dlq", "partition": 0, "offset": 4, "key": "order-101",
+      "value": {"order_id": "101", "amount": 59.99},
+      "timestamp": "2024-06-15T10:02:00Z", "event_type": "OrderUpdated"
+    },
+    "failure_reason": "deserialization_error",
+    "original_topic": "orders",
+    "retry_count": 1,
+    "first_failed_at": "2024-06-15T10:01:50Z",
+    "last_failed_at": "2024-06-15T10:02:00Z"
+  },
+  {
+    "event": {
+      "topic": "orders.dlq", "partition": 0, "offset": 5, "key": "order-101",
+      "value": {"order_id": "101", "amount": 59.99},
+      "timestamp": "2024-06-15T10:03:00Z", "event_type": "OrderConfirmed"
+    },
+    "failure_reason": "schema_validation_failed",
+    "original_topic": "orders",
+    "retry_count": 3,
+    "first_failed_at": "2024-06-15T10:02:30Z",
+    "last_failed_at": "2024-06-15T10:03:00Z"
+  },
+  {
+    "event": {
+      "topic": "shipments.dlq", "partition": 0, "offset": 6, "key": "ship-301",
+      "value": {"shipment_id": "301", "order_id": "103"},
+      "timestamp": "2024-06-15T10:10:00Z", "event_type": "ShipmentDispatched"
+    },
+    "failure_reason": "downstream_timeout",
+    "original_topic": "shipments",
+    "retry_count": 10,
+    "first_failed_at": "2024-06-15T09:50:00Z",
+    "last_failed_at": "2024-06-15T10:10:00Z"
+  },
+  {
+    "event": {
+      "topic": "orders.dlq", "partition": 0, "offset": 7, "key": "order-103",
+      "value": {"order_id": "103"},
+      "timestamp": "2024-06-15T10:00:02Z", "event_type": "OrderCreated"
+    },
+    "failure_reason": "schema_validation_failed",
+    "original_topic": "orders",
+    "retry_count": 3,
+    "first_failed_at": "2024-06-15T09:58:02Z",
+    "last_failed_at": "2024-06-15T10:00:02Z"
+  },
+  {
+    "event": {
+      "topic": "orders.dlq", "partition": 0, "offset": 8, "key": "order-104",
+      "value": {"order_id": "104"},
+      "timestamp": "2024-06-15T10:00:03Z", "event_type": "OrderCreated"
+    },
+    "failure_reason": "schema_validation_failed",
+    "original_topic": "orders",
+    "retry_count": 2,
+    "first_failed_at": "2024-06-15T09:59:00Z",
+    "last_failed_at": "2024-06-15T10:00:03Z"
+  }
+]
