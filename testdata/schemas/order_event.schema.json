@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["order_id", "amount", "status"],
+  "properties": {
+    "order_id": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": ["created", "confirmed", "cancelled", "shipped"]
+    },
+    "currency": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

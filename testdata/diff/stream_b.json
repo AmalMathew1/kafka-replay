@@ -1,0 +1,32 @@
+[
+  {
+    "topic": "orders",
+    "partition": 0,
+    "offset": 1,
+    "key": "order-101",
+    "value": {"order_id": "101", "amount": 59.99, "status": "created"},
+    "headers": {"source": "order-service"},
+    "timestamp": "2024-06-15T10:00:00Z",
+    "event_type": "OrderCreated"
+  },
+  {
+    "topic": "orders",
+    "partition": 0,
+    "offset": 2,
+    "key": "order-102",
+    "value": {"order_id": "102", "amount": 199.99, "status": "confirmed"},
+    "headers": {"source": "order-service"},
+    "timestamp": "2024-06-15T10:01:00Z",
+    "event_type": "OrderCreated"
+  },
+  {
+    "topic": "orders",
+    "partition": 0,
+    "offset": 5,
+    "key": "order-105",
+    "value": {"order_id": "105", "amount": 300.00, "status": "created"},
+    "headers": {"source": "order-service"},
+    "timestamp": "2024-06-15T10:04:00Z",
+    "event_type": "OrderCreated"
+  }
+]

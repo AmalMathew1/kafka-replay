@@ -1,0 +1,42 @@
+[
+  {
+    "topic": "orders",
+    "partition": 0,
+    "offset": 1,
+    "key": "order-101",
+    "value": {"order_id": "101", "amount": 59.99, "status": "created"},
+    "headers": {"source": "order-service"},
+    "timestamp": "2024-06-15T10:00:00Z",
+    "event_type": "OrderCreated"
+  },
+  {
+    "topic": "orders",
+    "partition": 0,
+    "offset": 2,
+    "key": "order-102",
+    "value": {"order_id": "102", "amount": 149.50, "status": "created"},
+    "headers": {"source": "order-service"},
+    "timestamp": "2024-06-15T10:01:00Z",
+    "event_type": "OrderCreated"
+  },
+  {
+    "topic": "orders",
+    "partition": 0,
+    "offset": 3,
+    "key": "order-103",
+    "value": {"order_id": "103", "amount": 25.00, "status": "created"},
+    "headers": {"source": "order-service"},
+    "timestamp": "2024-06-15T10:02:00Z",
+    "event_type": "OrderCreated"
+  },
+  {
+    "topic": "orders",
+    "partition": 0,
+    "offset": 4,
+    "key": "order-104",
+    "value": {"order_id": "104", "amount": 75.00, "status": "created"},
+    "headers": {"source": "order-service"},
+    "timestamp": "2024-06-15T10:03:00Z",
+    "event_type": "OrderCreated"
+  }
+]
