@@ -16,6 +16,8 @@ No live Kafka connection required — works entirely with exported event files.`
 	}
 
 	cmd.AddCommand(newReplayCmd())
+	cmd.AddCommand(newFilterCmd())
+	cmd.AddCommand(newStatsCmd())
 
 	return cmd
 }
