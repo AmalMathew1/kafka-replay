@@ -1,0 +1,52 @@
+[
+  {
+    "topic": "orders",
+    "partition": 0,
+    "offset": 1,
+    "key": "order-101",
+    "value": {"order_id": "101", "amount": 59.99, "currency": "USD", "status": "created"},
+    "headers": {"content-type": "application/json", "source": "order-service"},
+    "timestamp": "2024-06-15T10:00:00Z",
+    "event_type": "OrderCreated"
+  },
+  {
+    "topic": "orders",
+    "partition": 0,
+    "offset": 2,
+    "key": "order-102",
+    "value": {"order_id": "102", "amount": 149.50, "currency": "EUR", "status": "created"},
+    "headers": {"content-type": "application/json", "source": "order-service"},
+    "timestamp": "2024-06-15T10:01:30Z",
+    "event_type": "OrderCreated"
+  },
+  {
+    "topic": "orders",
+    "partition": 1,
+    "offset": 3,
+    "key": "order-101",
+    "value": {"order_id": "101", "amount": 59.99, "currency": "USD", "status": "confirmed"},
+    "headers": {"content-type": "application/json", "source": "payment-service"},
+    "timestamp": "2024-06-15T10:03:00Z",
+    "event_type": "OrderConfirmed"
+  },
+  {
+    "topic": "payments",
+    "partition": 0,
+    "offset": 4,
+    "key": "pay-201",
+    "value": {"payment_id": "201", "order_id": "101", "method": "credit_card", "amount": 59.99},
+    "headers": {"content-type": "application/json", "source": "payment-service"},
+    "timestamp": "2024-06-15T10:05:00Z",
+    "event_type": "PaymentProcessed"
+  },
+  {
+    "topic": "orders",
+    "partition": 0,
+    "offset": 5,
+    "key": "order-102",
+    "value": {"order_id": "102", "amount": 149.50, "currency": "EUR", "status": "cancelled"},
+    "headers": {"content-type": "application/json", "source": "order-service"},
+    "timestamp": "2024-06-15T10:10:00Z",
+    "event_type": "OrderCancelled"
+  }
+]
