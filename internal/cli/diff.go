@@ -9,6 +9,7 @@ import (
 
 	"github.com/AmalMathew1/kafka-replay/internal/diff"
 	"github.com/AmalMathew1/kafka-replay/internal/eventstore"
+	"github.com/AmalMathew1/kafka-replay/internal/output"
 )
 
 func newDiffCmd() *cobra.Command {
@@ -57,6 +58,14 @@ func runDiff(pathA, pathB, alignBy string, ignore []string, summaryOnly bool) er
 	})
 	if err != nil {
 		return fmt.Errorf("comparing streams: %w", err)
+	}
+
+	outFmt, err := getOutputFormat()
+	if err != nil {
+		return err
+	}
+	if outFmt == output.FormatJSON {
+		return output.WriteJSON(os.Stdout, result)
 	}
 
 	printDiffSummary(result, pathA, pathB)

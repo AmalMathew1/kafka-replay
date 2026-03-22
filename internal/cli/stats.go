@@ -11,6 +11,7 @@ import (
 
 	"github.com/AmalMathew1/kafka-replay/internal/eventstore"
 	"github.com/AmalMathew1/kafka-replay/internal/model"
+	"github.com/AmalMathew1/kafka-replay/internal/output"
 	"github.com/AmalMathew1/kafka-replay/internal/stats"
 )
 
@@ -50,6 +51,15 @@ func runStats(filePath string, window time.Duration, topN int, gapThreshold time
 	}
 
 	result := stats.Analyze(events, window, gapThreshold)
+
+	outFmt, err := getOutputFormat()
+	if err != nil {
+		return err
+	}
+	if outFmt == output.FormatJSON {
+		return output.WriteJSON(os.Stdout, result)
+	}
+
 	printStats(result, topN)
 	return nil
 }

@@ -10,6 +10,7 @@ import (
 
 	"github.com/AmalMathew1/kafka-replay/internal/dlq"
 	"github.com/AmalMathew1/kafka-replay/internal/model"
+	"github.com/AmalMathew1/kafka-replay/internal/output"
 )
 
 func newDLQInspectCmd() *cobra.Command {
@@ -58,6 +59,15 @@ func runDLQInspect(filePath, groupBy string, topN int, showEvents bool) error {
 	cfg.TopN = topN
 
 	result := dlq.Inspect(entries, cfg)
+
+	outFmt, err := getOutputFormat()
+	if err != nil {
+		return err
+	}
+	if outFmt == output.FormatJSON {
+		return output.WriteJSON(os.Stdout, result)
+	}
+
 	printDLQResult(result, showEvents)
 	return nil
 }

@@ -9,6 +9,7 @@ import (
 	"github.com/AmalMathew1/kafka-replay/internal/eventstore"
 	"github.com/AmalMathew1/kafka-replay/internal/filter"
 	"github.com/AmalMathew1/kafka-replay/internal/model"
+	"github.com/AmalMathew1/kafka-replay/internal/output"
 	"github.com/AmalMathew1/kafka-replay/internal/validate"
 )
 
@@ -58,6 +59,14 @@ func runValidate(filePath, schemaPath string, strict bool, eventType string) err
 	result, err := validate.ValidateEvents(events, schemaPath, strict)
 	if err != nil {
 		return err
+	}
+
+	outFmt, err := getOutputFormat()
+	if err != nil {
+		return err
+	}
+	if outFmt == output.FormatJSON {
+		return output.WriteJSON(os.Stdout, result)
 	}
 
 	fmt.Fprintf(os.Stdout, "Validated %d events: %d valid, %d invalid\n",

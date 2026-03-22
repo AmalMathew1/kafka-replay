@@ -1,14 +1,21 @@
 BINARY_NAME=kafka-replay
 BUILD_DIR=.
 GO=go
+VERSION?=dev
 
-.PHONY: build test test-cover lint fmt clean install
+.PHONY: build test test-cover test-unit test-integration lint fmt clean install
 
 build:
-	$(GO) build -o $(BUILD_DIR)/$(BINARY_NAME) ./cmd/kafka-replay
+	$(GO) build -ldflags="-s -w" -o $(BUILD_DIR)/$(BINARY_NAME) ./cmd/kafka-replay
 
 test:
 	$(GO) test ./... -v
+
+test-unit:
+	$(GO) test ./internal/... -v
+
+test-integration:
+	$(GO) test ./tests/... -v
 
 test-cover:
 	$(GO) test ./... -coverprofile=coverage.out
